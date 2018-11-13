@@ -1,27 +1,31 @@
+// @flow
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Input from "../presentational/Input";
+
 class FormContainer extends Component {
   constructor() {
     super();
     this.state = {
-      seo_title: ""
+      seoTitle: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
+
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
+
   render() {
-    const { seo_title } = this.state;
+    const { seoTitle } = this.state;
     return (
       <form id="article-form">
         <Input
           text="SEO title"
-          label="seo_title"
+          label="seoTitle"
           type="text"
-          id="seo_title"
-          value={seo_title}
+          id="seoTitle"
+          value={seoTitle}
           handleChange={this.handleChange}
         />
       </form>
@@ -29,3 +33,6 @@ class FormContainer extends Component {
   }
 }
 export default FormContainer;
+
+const wrapper = document.getElementById("create-article-form");
+ReactDOM.render(<FormContainer />, wrapper);

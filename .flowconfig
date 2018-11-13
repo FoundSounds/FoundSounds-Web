@@ -1,0 +1,12 @@
+[ignore]
+.*/node_modules/stylelint/**/*
+.*/vendor/bundle/**/*
+.*/tmp/*
+.*/dist/*
+
+[include]
+
+[libs]
+flow-typed
+
+[options]

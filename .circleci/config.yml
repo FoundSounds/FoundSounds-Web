@@ -1,0 +1,54 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10-browsers
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          command: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - gem-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: |
+            yarn
+
+      - save_cache:
+          key: gem-cache-{{ arch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+
+      # run tests!
+      - run:
+          name: Yarn lint
+          command: yarn lint
+
+      - run:
+          name: Stylelint
+          command: yarn stylelint
+
+      - run:
+          name: Yarn test && CodeCov
+          command: yarn run codecov
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+

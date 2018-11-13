@@ -41,7 +41,15 @@ jobs:
           command: yarn stylelint
 
       - run:
-          name: Yarn test && CodeCov
+          name: Test
+          command: yarn test
+
+      - run:
+          name: Flow
+          command: yarn flow
+
+      - run:
+          name: CodeCov
           command: yarn run codecov
 
       # collect reports

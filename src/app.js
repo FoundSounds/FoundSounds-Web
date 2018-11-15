@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { graphql, QueryRenderer } from "react-relay";
-import environment from "./api";
+import environment from "./environment";
 
 
 export default class App extends React.Component {
@@ -10,8 +10,11 @@ export default class App extends React.Component {
       <QueryRenderer
         environment={environment}
         query={graphql`
-          query userQuery($id: ID!) {
-            id
+          query appQuery {
+            users {
+              id,
+              name
+            }
           }
         `}
         variables={{}}
@@ -24,7 +27,7 @@ export default class App extends React.Component {
           }
           return (
             <div>
-              User ID: { props.viewer.id }
+              User ID: { props.id }
             </div>
           );
         }}

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6b2ce2c15bd72d309df1fb42840431f5
+ * @relayHash e4aef8c48e328b95d7cb20edb2622e7f
  */
 
 /* eslint-disable */
@@ -9,11 +9,16 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type userQueryVariables = {||};
+export type userQueryVariables = {|
+  id: string
+|};
 export type userQueryResponse = {|
+  +user: ?{|
+    +id: string
+  |},
   +users: ?$ReadOnlyArray<?{|
     +id: string
-  |}>
+  |}>,
 |};
 export type userQuery = {|
   variables: userQueryVariables,
@@ -23,7 +28,12 @@ export type userQuery = {|
 
 
 /*
-query userQuery {
+query userQuery(
+  $id: ID!
+) {
+  user(id: $id) {
+    id
+  }
   users {
     id
   }
@@ -33,6 +43,40 @@ query userQuery {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "kind": "LocalArgument",
+    "name": "id",
+    "type": "ID!",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "id",
+    "args": null,
+    "storageKey": null
+  }
+],
+v2 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "user",
+    "storageKey": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id",
+        "type": "ID!"
+      }
+    ],
+    "concreteType": "UserType",
+    "plural": false,
+    "selections": v1
+  },
+  {
     "kind": "LinkedField",
     "alias": null,
     "name": "users",
@@ -40,15 +84,7 @@ var v0 = [
     "args": null,
     "concreteType": "UserType",
     "plural": true,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "selections": v1
   }
 ];
 return {
@@ -56,24 +92,24 @@ return {
   "operationKind": "query",
   "name": "userQuery",
   "id": null,
-  "text": "query userQuery {\n  users {\n    id\n  }\n}\n",
+  "text": "query userQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n  }\n  users {\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "userQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
-    "selections": v0
+    "argumentDefinitions": v0,
+    "selections": v2
   },
   "operation": {
     "kind": "Operation",
     "name": "userQuery",
-    "argumentDefinitions": [],
-    "selections": v0
+    "argumentDefinitions": v0,
+    "selections": v2
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f8d98dcff3a901541c3f1e9a57b63e1b';
+(node/*: any*/).hash = '6a7a391eadc2b5b30bfa88cfb9566c08';
 module.exports = node;

@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import FormContainer from "./js/components/container/FormContainer";
+import SoundContainer from "./components/container/SoundContainer";
 
 const App = () => (
   <div className="App">
@@ -8,14 +8,7 @@ const App = () => (
       <p>
           Hi
       </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FormContainer />
-      </a>
+      <SoundContainer id="15" />
     </header>
   </div>
 );

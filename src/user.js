@@ -43,7 +43,6 @@ export default class User extends React.Component<Props, State> {
             return <div>Loading...</div>;
           }
 
-          this.setState({ totalUsers: props.users.count });
           const userIDS = props.users.map(user => (
             <div key={user.id}>
               User ID:

@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Input from "../presentational/Input";
 import User from "../../../user";
 
@@ -29,12 +28,9 @@ class FormContainer extends Component {
           value={seoTitle}
           handleChange={this.handleChange}
         />
-        <User />
+        <User id="2" />
       </form>
     );
   }
 }
 export default FormContainer;
-
-const wrapper = document.getElementById("create-article-form");
-ReactDOM.render(<FormContainer />, wrapper);

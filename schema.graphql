@@ -10,6 +10,7 @@ type PhotoType {
   id: ID!
   sound: SoundType!
   user: UserType!
+  file_name: String!
 }
 
 # The query root

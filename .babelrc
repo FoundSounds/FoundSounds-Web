@@ -5,6 +5,7 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "relay"
+    "relay",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

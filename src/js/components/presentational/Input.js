@@ -2,9 +2,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+type propTypes = {
+  label: string,
+  text: string,
+  type: string,
+  id: string,
+  value: string,
+  handleChange: PropTypes.func,
+};
+
 const Input = ({
   label, text, type, id, value, handleChange,
-}) => (
+}: propTypes) => (
   <div className="form-group">
     <label htmlFor={label}>{text}</label>
     <input
@@ -17,12 +26,4 @@ const Input = ({
     />
   </div>
 );
-Input.propTypes = {
-  label: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-};
 export default Input;

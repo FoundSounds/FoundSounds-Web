@@ -3,16 +3,31 @@ import React, { Component } from "react";
 import Input from "../presentational/Input";
 import User from "../../../user";
 
-class FormContainer extends Component {
-  constructor() {
-    super();
+type Props = {
+  seoTitle?: string,
+};
+
+type State = {
+  seoTitle: string,
+}
+
+class FormContainer extends Component<Props, State> {
+  static defaultProps = {
+    seoTitle: "",
+  }
+
+  constructor(props: Props) {
+    super(props);
     this.state = {
-      seoTitle: "",
+      seoTitle: props.seoTitle || "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event: Event) => {
+    if (!(event instanceof window.HTMLInputElement)) {
+      return;
+    }
     this.setState({ [event.target.id]: event.target.value });
   }
 
@@ -33,4 +48,5 @@ class FormContainer extends Component {
     );
   }
 }
+
 export default FormContainer;

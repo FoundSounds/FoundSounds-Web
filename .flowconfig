@@ -3,6 +3,7 @@
 .*/vendor/bundle/**/*
 .*/tmp/*
 .*/dist/*
+.*/webpack.config.js
 
 [include]
 

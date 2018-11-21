@@ -7,9 +7,6 @@
     "jasmine": true,
     "jquery": true
   },
-  "globals": {
-    "ShopifyApp": false
-  },
   "rules": {
     "flowtype/no-primitive-constructor-types": 2,
     "flowtype/no-weak-types": 2,

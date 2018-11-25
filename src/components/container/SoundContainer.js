@@ -40,7 +40,9 @@ class SoundContainer extends React.PureComponent<Props> {
                 {props.sound.user.id}
               </div>
               {props.sound.id}
-              {props.sound.description}
+              <div>
+                {props.sound.description}
+              </div>
               {props.sound.latitude}
               {props.sound.longitude}
             </div>

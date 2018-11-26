@@ -2,7 +2,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackMd5Hash = require("webpack-md5-hash");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require("glob");
 
 const CSS_LOADER_CONFIG = [
@@ -11,9 +10,6 @@ const CSS_LOADER_CONFIG = [
     options: {
       sourceMap: true,
     },
-  },
-  {
-    loader: MiniCssExtractPlugin.loader,
   },
   {
     loader: "css-loader",
@@ -54,9 +50,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "style.[contenthash].css",
-    }),
     new HtmlWebpackPlugin({
       inject: false,
       hash: true,

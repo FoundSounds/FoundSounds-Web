@@ -11,7 +11,7 @@ function fetchQuery(
   operation,
   variables,
 ) {
-  return fetch("/graphql", {
+  return fetch("https://dfj.ngrok.io/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,9 @@ function fetchQuery(
     }),
   }).then(response => (
     response.json()
-  ));
+  ).catch((error) => {
+    console.error(error);
+  }));
 }
 
 const environment = new Environment({

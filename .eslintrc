@@ -41,7 +41,8 @@
     }],
     "no-use-before-define": ["off"],
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }]
   },
   "plugins": ["react", "jsx-a11y", "import", "flowtype"]
 }

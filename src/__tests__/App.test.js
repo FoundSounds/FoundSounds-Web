@@ -58,5 +58,20 @@ describe("App", () => {
       await waitForElement(() => getByText("Error!"));
       expect(getByText("Error!")).toBeTruthy();
     }, 500);
+
+    it("should error out if not valid json", async () => {
+      queryMock.mockQuery({
+        name: "SoundContainerQuery",
+        data: { "blah": "blah" },
+        error: { error: "Blah" },
+        status: 401,
+      });
+      const { getByText } = render(<App />);
+      expect(getByText("Loading...")).toBeTruthy();
+      await waitForElement(() => getByText("Error!"));
+      expect(getByText("Error!")).toBeTruthy();
+      jest.spyOn(global.console, "error");
+      expect(console.error).toBeCalled();
+    }, 500);
   });
 });

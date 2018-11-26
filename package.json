@@ -56,7 +56,7 @@
   "jest": {
     "automock": false,
     "setupFiles": [
-      "./setupJest.js"
+      "./src/__testUtils__/setupJest.js"
      ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true

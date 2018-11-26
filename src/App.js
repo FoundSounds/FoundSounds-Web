@@ -16,7 +16,6 @@ const App = () => (
       <Button
         raised
         className="button-alternate"
-        onClick={() => console.warn("clicked!")}
       >
         Click Me!
       </Button>

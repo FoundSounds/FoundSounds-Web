@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
+import Button from "@material/react-button";
 import SoundContainer from "./components/container/SoundContainer";
+import "./stylesheets/App.scss";
 
 const App = () => (
   <div className="App">
@@ -8,8 +10,17 @@ const App = () => (
       <p>
           Hi
       </p>
-      <SoundContainer id="15" />
     </header>
+    <SoundContainer id="15" />
+    <div>
+      <Button
+        raised
+        className="button-alternate"
+        onClick={() => console.log("clicked!")}
+      >
+        Click Me!
+      </Button>
+    </div>
   </div>
 );
 export default App;

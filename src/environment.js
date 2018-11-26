@@ -11,7 +11,7 @@ function fetchQuery(
   operation,
   variables,
 ) {
-  return fetch("https://dfj.ngrok.io/graphql", {
+  return fetch("/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

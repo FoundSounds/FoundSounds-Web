@@ -1,5 +1,5 @@
 @import "@material/button/mixins";
 
 .button-alternate {
-  @include mdc-button-container-fill-color(lightblue);
+  @include mdc-button-container-fill-color(primary);
 }

@@ -11,7 +11,7 @@ describe("App", () => {
 
   beforeEach(async () => {
     // Make sure mock data is always fresh for each test run
-    queryMock.setup("https://dfj.ngrok.io/graphql");
+    queryMock.setup(process.env.GRAPHQL_URL || "");
     mockAppQueryData = {
       sound: {
         id: "1",

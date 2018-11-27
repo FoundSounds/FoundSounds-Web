@@ -25,7 +25,6 @@ const App = () => (
       navigationIcon={(
         <MaterialIcon
           icon="menu"
-          onClick={() => { document.location.href = "/"; }}
         />
       )}
       actionItems={[<MaterialIcon key="account" icon="account_circle" />]}

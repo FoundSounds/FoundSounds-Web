@@ -1,6 +1,9 @@
 // @flow
 import React from "react";
 import { graphql, QueryRenderer } from "react-relay";
+import Card, {
+  CardPrimaryContent,
+} from "@material/react-card";
 import environment from "../../environment";
 
 type Props = {
@@ -20,8 +23,12 @@ class SoundContainer extends React.PureComponent<Props> {
               description
               latitude
               longitude
+              file_name
               user {
-                id
+                name
+              }
+              photos {
+                file_name
               }
             }
           }
@@ -35,17 +42,13 @@ class SoundContainer extends React.PureComponent<Props> {
             return <div>Loading...</div>;
           }
           return (
-            <div>
-              <div>
-                {props.sound.user.id}
-              </div>
-              {props.sound.id}
-              <div>
+            <Card className="sound-card">
+              <CardPrimaryContent>
                 {props.sound.description}
-              </div>
+              </CardPrimaryContent>
               {props.sound.latitude}
               {props.sound.longitude}
-            </div>
+            </Card>
           );
         }}
       />

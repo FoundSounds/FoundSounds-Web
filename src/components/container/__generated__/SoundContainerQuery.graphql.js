@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 76bb686067846e85fc17caf18da28aa7
+ * @relayHash 2c18d4c8e33b7ea00fa5ae2dc84ecc7b
  */
 
 /* eslint-disable */
@@ -18,9 +18,13 @@ export type SoundContainerQueryResponse = {|
     +description: ?string,
     +latitude: number,
     +longitude: number,
+    +file_name: string,
     +user: {|
-      +id: string
+      +name: ?string
     |},
+    +photos: ?$ReadOnlyArray<?{|
+      +file_name: string
+    |}>,
   |}
 |};
 export type SoundContainerQuery = {|
@@ -39,7 +43,13 @@ query SoundContainerQuery(
     description
     latitude
     longitude
+    file_name
     user {
+      name
+      id
+    }
+    photos {
+      file_name
       id
     }
   }
@@ -55,73 +65,62 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id",
+    "type": "ID!"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v2 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "sound",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "id",
-        "variableName": "id",
-        "type": "ID!"
-      }
-    ],
-    "concreteType": "SoundType",
-    "plural": false,
-    "selections": [
-      v1,
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "description",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "latitude",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "longitude",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "user",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "UserType",
-        "plural": false,
-        "selections": [
-          v1
-        ]
-      }
-    ]
-  }
-];
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "description",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "latitude",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "longitude",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "file_name",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "SoundContainerQuery",
   "id": null,
-  "text": "query SoundContainerQuery(\n  $id: ID!\n) {\n  sound(id: $id) {\n    id\n    description\n    latitude\n    longitude\n    user {\n      id\n    }\n  }\n}\n",
+  "text": "query SoundContainerQuery(\n  $id: ID!\n) {\n  sound(id: $id) {\n    id\n    description\n    latitude\n    longitude\n    file_name\n    user {\n      name\n      id\n    }\n    photos {\n      file_name\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -129,16 +128,100 @@ return {
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
-    "selections": v2
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "sound",
+        "storageKey": null,
+        "args": v1,
+        "concreteType": "SoundType",
+        "plural": false,
+        "selections": [
+          v2,
+          v3,
+          v4,
+          v5,
+          v6,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "UserType",
+            "plural": false,
+            "selections": [
+              v7
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "photos",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PhotoType",
+            "plural": true,
+            "selections": [
+              v6
+            ]
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "SoundContainerQuery",
     "argumentDefinitions": v0,
-    "selections": v2
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "sound",
+        "storageKey": null,
+        "args": v1,
+        "concreteType": "SoundType",
+        "plural": false,
+        "selections": [
+          v2,
+          v3,
+          v4,
+          v5,
+          v6,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "UserType",
+            "plural": false,
+            "selections": [
+              v7,
+              v2
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "photos",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PhotoType",
+            "plural": true,
+            "selections": [
+              v6,
+              v2
+            ]
+          }
+        ]
+      }
+    ]
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f90a145680d6c13283ba9e6b498d5a7f';
+(node/*: any*/).hash = '280d74d1eed75ec113ee4a4df84e4252';
 module.exports = node;

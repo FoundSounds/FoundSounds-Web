@@ -811,12 +811,32 @@
     prop-types "^15.6.1"
     react "^16.4.2"
 
+"@material/react-material-icon@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@material/react-material-icon/-/react-material-icon-0.7.0.tgz#ed5279830f49c487f62e802bba59412f242ba0bd"
+  integrity sha512-/bu1PD01ZYclRyVueCTcFQSuZr6PvlxWh+rdUrMwUOaMXdhU/RwpOY4psdLli92dtVppUzm7yR4rkQGxSXcMCw==
+  dependencies:
+    "@material/react-ripple" "^0.7.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.4.2"
+
 "@material/react-ripple@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@material/react-ripple/-/react-ripple-0.7.0.tgz#89845239fe47a301c9d8e953f3e74463969ca0fd"
   integrity sha512-tPvze1gZzBlcIhTMKQ078e7kUyA8PA6Nvd+Pnm4NVtgMf0fFR+R7pOIMBupXOuDPeGHzmh8D87SkxgRu9kiWEA==
   dependencies:
     "@material/ripple" "^0.41.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.4.2"
+
+"@material/react-top-app-bar@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@material/react-top-app-bar/-/react-top-app-bar-0.7.0.tgz#ffec7af22785ea71237f3dfa58152d7bfa95b61f"
+  integrity sha512-CmUNNQg/UF9/CTskG8rG8WDMTgu8n4GOQZP7TEWiVauH2xPaID8LSP/NF56y6gLO1wLW9Zh/Gpc4Yzkjc+glqQ==
+  dependencies:
+    "@material/top-app-bar" "^0.41.0"
     classnames "^2.2.5"
     prop-types "^15.6.1"
     react "^16.4.2"
@@ -844,6 +864,20 @@
   version "0.41.0"
   resolved "https://registry.yarnpkg.com/@material/theme/-/theme-0.41.0.tgz#4f8252a872b17845cc661b867cbbf54e51a26759"
   integrity sha512-ohW2JxObKOWvP34EkIIcrEVtL3g0Gs/T3/MdOsM36euyshY8Jwl1f6fjVUQvVjSpixUtSb30/+ulblF8fTOwBg==
+
+"@material/top-app-bar@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-0.41.0.tgz#03a63bb044ad405c7abafa2e335809aa5dddcccb"
+  integrity sha512-U3MK6pdzyfXC3zttsrEYihzR7aRqnKM3w2MWRwI0iub/lFygVOSa4qQfaJhwjz9TTyxB8tdtZOXBpEVDsH+xmA==
+  dependencies:
+    "@material/animation" "^0.41.0"
+    "@material/base" "^0.41.0"
+    "@material/elevation" "^0.41.0"
+    "@material/ripple" "^0.41.0"
+    "@material/rtl" "^0.40.1"
+    "@material/shape" "^0.41.0"
+    "@material/theme" "^0.41.0"
+    "@material/typography" "^0.41.0"
 
 "@material/typography@^0.41.0":
   version "0.41.0"

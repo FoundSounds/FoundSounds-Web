@@ -2,16 +2,25 @@
 import React from "react";
 import { graphql, QueryRenderer } from "react-relay";
 import Card, {
-  CardPrimaryContent,
   CardMedia,
 } from "@material/react-card";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import environment from "../../environment";
 
 type Props = {
   id: string,
 };
 
-class SoundContainer extends React.PureComponent<Props> {
+type State = {
+  geoData: ReactComponent
+}
+
+class SoundContainer extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { geoData: null, blah: null };
+  }
+
   render() {
     const { id } = this.props;
     return (
@@ -43,32 +52,37 @@ class SoundContainer extends React.PureComponent<Props> {
             return <div>Loading...</div>;
           }
           const img = `https://foundsounds.me/uploads/images/${props.sound.photos[0].file_name}`;
+          const geoData = (
+            <div>
+              Hi David!
+              {props.sound.longitude}
+            </div>
+          );
+
+          function toggleGeoData() {
+            this.setState({blah: geoData});
+          }
+
           return (
             <Card className="sound-card">
               <CardMedia square imageUrl={img} />
               <h2>{props.sound.user.name}</h2>
-              <subtitle>
-                {props.sound.description}
-              </subtitle>
-              <div className="collapsible collapsedcollapsible">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
-                {props.sound.latitude}
-                {props.sound.longitude}
+              <div className="subtitle">
+                <a href onClick={toggleGeoData()}>{this.state.blah}</a>
               </div>
+              <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+              >
+                {this.state.geoData}
+              </ReactCSSTransitionGroup>
             </Card>
           );
         }}
       />
     );
   }
-}
-
-export function toggleClass(element, className) {
-  if (classList.contains(className)) {
-    classList.remove(className);
-    return;
-  }
-  classList.add(className);
 }
 
 export default SoundContainer;

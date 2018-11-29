@@ -51,7 +51,8 @@ class SoundContainer extends React.PureComponent<Props, State> {
           if (!props) {
             return <div>Loading...</div>;
           }
-          const img = `https://foundsounds.me/uploads/images/${props.sound.photos[0].file_name}`;
+          const img = props.sound.photos ? `https://foundsounds.me/uploads/images/${props.sound.photos[0].file_name}` : "";
+
           const geoData = (
             <div>
               Hi David!
@@ -68,7 +69,7 @@ class SoundContainer extends React.PureComponent<Props, State> {
               <CardMedia square imageUrl={img} />
               <h2>{props.sound.user.name}</h2>
               <div className="subtitle">
-                <a href onClick={toggleGeoData()}>{this.state.blah}</a>
+                <a onClick={toggleGeoData}>Show GeoData{this.state.blah}</a>
               </div>
               <ReactCSSTransitionGroup
                 transitionName="fade"

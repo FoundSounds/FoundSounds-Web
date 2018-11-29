@@ -79,6 +79,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development",
+    "start-remote": "webpack-dev-server --host 0.0.0.0 --mode development",
     "lint": "eslint src",
     "stylelint": "stylelint src/stylesheets/**/*.scss",
     "test": "GRAPHQL_URL=https://dfj.ngrok.io/graphql jest -w2",

@@ -59,6 +59,7 @@ module.exports = {
     new WebpackMd5Hash(),
   ],
   devServer: {
+    disableHostCheck: true,
     proxy: {
       "/graphql": {
         target: "http://localhost:3000",

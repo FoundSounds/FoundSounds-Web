@@ -2,15 +2,32 @@
 import React from "react";
 import { graphql, QueryRenderer } from "react-relay";
 import Card, {
-  CardPrimaryContent,
+  CardMedia,
 } from "@material/react-card";
+import MaterialIcon from "@material/react-material-icon";
+import Button from "@material/react-button";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import environment from "../../environment";
 
 type Props = {
   id: string,
 };
 
-class SoundContainer extends React.PureComponent<Props> {
+type GeoData = {
+  longitude: ?number,
+  latitude: ?number,
+  description: ?string,
+};
+type State = {
+  geoData: GeoData,
+};
+
+class SoundContainer extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { geoData: { longitude: null, latitude: null, description: null } };
+  }
+
   render() {
     const { id } = this.props;
     return (
@@ -41,13 +58,43 @@ class SoundContainer extends React.PureComponent<Props> {
           if (!props) {
             return <div>Loading...</div>;
           }
+          const imgPrefix = "https://foundsounds.me/uploads/images/";
+          const img = props.sound.photos ? `${imgPrefix}${props.sound.photos[0].file_name}` : "";
+          const geoButton = (
+            <MaterialIcon icon="room" hasRipple />
+          );
+
+          const { geoData } = this.state;
+
+          const soundGeoData = {
+            ...geoData,
+            longitude: props.sound.longitude,
+            latitude: props.sound.latitude,
+          };
+
+          const toggleGeoData = () => {
+            this.setState({ geoData: soundGeoData });
+          };
+
+
           return (
             <Card className="sound-card">
-              <CardPrimaryContent>
+              <CardMedia square imageUrl={img} />
+              <h2>{props.sound.user.name}</h2>
+              <div className="mdc-typography--subtitle2">
                 {props.sound.description}
-              </CardPrimaryContent>
-              {props.sound.latitude}
-              {props.sound.longitude}
+              </div>
+              <Button icon={geoButton} onClick={toggleGeoData} />
+              <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+              >
+                <div>
+                  {geoData.latitude}
+                  {geoData.longitude}
+                </div>
+              </ReactCSSTransitionGroup>
             </Card>
           );
         }}

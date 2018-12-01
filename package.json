@@ -11,6 +11,7 @@
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@material/icon-button": "^0.41.0",
     "@material/react-button": "^0.7.0",
     "@material/react-card": "^0.7.0",
     "@material/react-material-icon": "^0.7.0",
@@ -27,6 +28,7 @@
     "node-sass": "^4.10.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.6.1",
     "react-relay": "^1.7.0",
     "relay-runtime": "^1.7.0",
@@ -78,6 +80,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development",
+    "start-remote": "webpack-dev-server --host 0.0.0.0 --mode development",
     "lint": "eslint src",
     "stylelint": "stylelint src/stylesheets/**/*.scss",
     "test": "GRAPHQL_URL=https://dfj.ngrok.io/graphql jest -w2",

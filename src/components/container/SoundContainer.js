@@ -4,21 +4,28 @@ import { graphql, QueryRenderer } from "react-relay";
 import Card, {
   CardMedia,
 } from "@material/react-card";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import MaterialIcon from "@material/react-material-icon";
+import Button from "@material/react-button";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import environment from "../../environment";
 
 type Props = {
   id: string,
 };
 
+type GeoData = {
+  longitude: ?number,
+  latitude: ?number,
+  description: ?string,
+};
 type State = {
-  geoData: ReactComponent
-}
+  geoData: GeoData,
+};
 
 class SoundContainer extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { geoData: null, blah: null };
+    this.state = { geoData: { longitude: null, latitude: null, description: null } };
   }
 
   render() {
@@ -51,32 +58,42 @@ class SoundContainer extends React.PureComponent<Props, State> {
           if (!props) {
             return <div>Loading...</div>;
           }
-          const img = props.sound.photos ? `https://foundsounds.me/uploads/images/${props.sound.photos[0].file_name}` : "";
-
-          const geoData = (
-            <div>
-              Hi David!
-              {props.sound.longitude}
-            </div>
+          const imgPrefix = "https://foundsounds.me/uploads/images/";
+          const img = props.sound.photos ? `${imgPrefix}${props.sound.photos[0].file_name}` : "";
+          const geoButton = (
+            <MaterialIcon icon="room" hasRipple />
           );
 
-          function toggleGeoData() {
-            this.setState({blah: geoData});
-          }
+          const { geoData } = this.state;
+
+          const soundGeoData = {
+            ...geoData,
+            longitude: props.sound.longitude,
+            latitude: props.sound.latitude,
+          };
+
+          const toggleGeoData = () => {
+            this.setState({ geoData: soundGeoData });
+          };
+
 
           return (
             <Card className="sound-card">
               <CardMedia square imageUrl={img} />
               <h2>{props.sound.user.name}</h2>
-              <div className="subtitle">
-                <a onClick={toggleGeoData}>Show GeoData{this.state.blah}</a>
+              <div className="mdc-typography--subtitle2">
+                {props.sound.description}
               </div>
+              <Button icon={geoButton} onClick={toggleGeoData} />
               <ReactCSSTransitionGroup
                 transitionName="fade"
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}
               >
-                {this.state.geoData}
+                <div>
+                  {geoData.latitude}
+                  {geoData.longitude}
+                </div>
               </ReactCSSTransitionGroup>
             </Card>
           );

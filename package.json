@@ -11,6 +11,7 @@
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@material/icon-button": "^0.41.0",
     "@material/react-button": "^0.7.0",
     "@material/react-card": "^0.7.0",
     "@material/react-material-icon": "^0.7.0",

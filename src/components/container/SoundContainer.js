@@ -8,6 +8,7 @@ import MaterialIcon from "@material/react-material-icon";
 import Button from "@material/react-button";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import environment from "../../environment";
+import Map from "../presentational/Map";
 
 type Props = {
   id: string,
@@ -93,6 +94,7 @@ class SoundContainer extends React.PureComponent<Props, State> {
                 <div>
                   {geoData.latitude}
                   {geoData.longitude}
+                  <Map latitude={geoData.latitude} longitude={geoData.longitude} />
                 </div>
               </ReactCSSTransitionGroup>
             </Card>

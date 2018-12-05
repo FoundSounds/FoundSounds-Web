@@ -47,6 +47,10 @@ module.exports = {
         test: /\.scss$/,
         use: CSS_LOADER_CONFIG,
       },
+      {
+        test: /\.css$/,
+        use: CSS_LOADER_CONFIG,
+      },
     ],
   },
   plugins: [

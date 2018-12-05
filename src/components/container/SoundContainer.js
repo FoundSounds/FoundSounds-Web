@@ -25,7 +25,7 @@ type State = {
   map: ?Node,
 };
 
-class SoundContainer extends React.PureComponent<Props, State> {
+class SoundContainer extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

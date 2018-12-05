@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import type { Node } from "react";
 import { graphql, QueryRenderer } from "react-relay";
 import Card, {
   CardMedia,
@@ -8,6 +9,7 @@ import MaterialIcon from "@material/react-material-icon";
 import Button from "@material/react-button";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import environment from "../../environment";
+import Map from "../presentational/Map";
 
 type Props = {
   id: string,
@@ -20,12 +22,20 @@ type GeoData = {
 };
 type State = {
   geoData: GeoData,
+  map: ?Node,
 };
 
-class SoundContainer extends React.PureComponent<Props, State> {
+class SoundContainer extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { geoData: { longitude: null, latitude: null, description: null } };
+    this.state = {
+      geoData: {
+        longitude: null,
+        latitude: null,
+        description: null,
+      },
+      map: null,
+    };
   }
 
   render() {
@@ -64,7 +74,10 @@ class SoundContainer extends React.PureComponent<Props, State> {
             <MaterialIcon icon="room" hasRipple />
           );
 
-          const { geoData } = this.state;
+          const { geoData, map } = this.state;
+          const soundMap = (
+            <Map latitude={props.sound.latitude} longitude={props.sound.longitude} />
+          );
 
           const soundGeoData = {
             ...geoData,
@@ -73,9 +86,8 @@ class SoundContainer extends React.PureComponent<Props, State> {
           };
 
           const toggleGeoData = () => {
-            this.setState({ geoData: soundGeoData });
+            this.setState({ geoData: soundGeoData, map: soundMap });
           };
-
 
           return (
             <Card className="sound-card">
@@ -93,6 +105,9 @@ class SoundContainer extends React.PureComponent<Props, State> {
                 <div>
                   {geoData.latitude}
                   {geoData.longitude}
+                  <div>
+                    {map}
+                  </div>
                 </div>
               </ReactCSSTransitionGroup>
             </Card>

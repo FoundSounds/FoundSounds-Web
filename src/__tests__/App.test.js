@@ -2,9 +2,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { render, waitForElement } from "react-testing-library";
+import { shallow } from "enzyme";
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 import App from "../App";
 import SoundContainer from "../components/container/SoundContainer";
+import Map from "../components/presentational/Map";
 import queryMock from "../__testUtils__/queryMock";
+
+jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
+  Map: () => ({
+    on: () => ({}),
+  }),
+}));
 
 describe("App", () => {
   let mockAppQueryData;
@@ -14,12 +23,12 @@ describe("App", () => {
     queryMock.setup(process.env.GRAPHQL_URL || "");
     mockAppQueryData = {
       sound: {
-        id: "1",
+        id: "10",
         description: "Really great sound!",
         latitude: -39,
         longitude: 39,
         user: {
-          id: "1",
+          id: "11",
         },
       },
     };
@@ -28,6 +37,9 @@ describe("App", () => {
     it("renders without crashing", () => {
       queryMock.mockQuery({
         name: "SoundContainerQuery",
+        variables: {
+          id: "10",
+        },
         data: mockAppQueryData,
       });
       const div = document.createElement("div");
@@ -38,9 +50,12 @@ describe("App", () => {
     it("should render content when given a successful response", async () => {
       queryMock.mockQuery({
         name: "SoundContainerQuery",
+        variables: {
+          id: "10",
+        },
         data: mockAppQueryData,
       });
-      const { getByText } = render(<SoundContainer id="15" />);
+      const { getByText } = render(<SoundContainer id="10" />);
       expect(getByText("Loading...")).toBeTruthy();
       await waitForElement(() => getByText("Really great sound!"));
       expect(getByText("Really great sound!")).toBeTruthy();
@@ -73,5 +88,21 @@ describe("App", () => {
       jest.spyOn(global.console, "error");
       expect(console.error).toBeCalled();
     }, 500);
+  });
+
+  describe("Map", () => {
+    it("should render map when giving longitude and latitude", () => {
+      queryMock.mockQuery({
+        name: "SoundContainerQuery",
+        variables: {
+          id: "10",
+        },
+        data: mockAppQueryData,
+      });
+      const wrapper = shallow(<Map longitude={30} latitude={30} />);
+      expect(wrapper.find(ReactMapboxGl)).toBeTruthy();
+      expect(wrapper.find(Feature)).toBeTruthy();
+      expect(wrapper.find(Layer)).toBeTruthy();
+    });
   });
 });

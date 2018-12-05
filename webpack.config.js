@@ -7,9 +7,6 @@ const glob = require("glob");
 const CSS_LOADER_CONFIG = [
   {
     loader: "style-loader",
-    options: {
-      sourceMap: true,
-    },
   },
   {
     loader: "css-loader",
@@ -45,6 +42,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        use: CSS_LOADER_CONFIG,
+      },
+      {
+        test: /\.css$/,
         use: CSS_LOADER_CONFIG,
       },
     ],

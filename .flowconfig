@@ -4,11 +4,13 @@
 .*/tmp/*
 .*/dist/*
 .*/webpack.config.js
+.*/node_modules/@mapbox/jsonlint-lines-primitives/test/*
 
 [include]
 
 [libs]
 flow-typed
+node_modules/mapbox-gl/flow-typed
 
 [options]
 module.file_ext=.js

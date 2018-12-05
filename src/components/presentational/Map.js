@@ -17,9 +17,10 @@ const Map = ({
   <MapBox
     style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
     containerStyle={{
-      height: "100vh",
-      width: "45vw",
+      height: "300px",
+      width: "400px",
     }}
+    center={[latitude, longitude]}
   >
     <Layer
       type="symbol"

@@ -17,8 +17,8 @@ coverage:
         if_ci_failed: error
     project: *cov
     ignore:
-      - "src/__testUtils__/"
-      - "__testUtils__"
+      - "src/__testUtils__/*"
+      - "__testUtils__/*"
 comment:
   layout: "reach, diff, flags, files"
   behavior: default

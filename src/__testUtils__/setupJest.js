@@ -9,3 +9,9 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 global.console = { error: jest.fn() };
+
+jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
+  Map: () => ({
+    on: () => ({}),
+  }),
+}));

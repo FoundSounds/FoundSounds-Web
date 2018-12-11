@@ -13,5 +13,6 @@ global.console = { error: jest.fn() };
 jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
   Map: () => ({
     on: () => ({}),
+    remove: () => ({}),
   }),
 }));

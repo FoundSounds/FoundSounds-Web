@@ -15,22 +15,24 @@ class Map extends React.PureComponent<Props> {
   render() {
     const { latitude, longitude } = this.props;
     return (
-      <MapBox
-        style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
-        containerStyle={{
-          height: "300px",
-          width: "400px",
-        }}
-        center={[latitude, longitude]}
-      >
-        <Layer
-          type="symbol"
-          id="marker"
-          layout={{ "icon-image": "marker-15" }}
+      <div data-testid="mapWrapper">
+        <MapBox
+          style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line react/style-prop-object
+          containerStyle={{
+            height: "300px",
+            width: "400px",
+          }}
+          center={[latitude, longitude]}
         >
-          <Feature coordinates={[latitude, longitude]} />
-        </Layer>
-      </MapBox>
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ "icon-image": "marker-15" }}
+          >
+            <Feature coordinates={[latitude, longitude]} />
+          </Layer>
+        </MapBox>
+      </div>
     );
   }
 }

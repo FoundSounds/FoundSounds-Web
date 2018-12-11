@@ -73,12 +73,14 @@ describe("Map", () => {
         },
         data: mockAppQueryData,
       });
+
       const wrapper = render(<SoundContainer id="10" />);
       await waitForElement(() => wrapper.getByText("Really great sound!"));
-      console.error("HI DAVID");
       expect(wrapper.getByText("Really great sound!")).toBeTruthy();
       fireEvent.click(wrapper.getByText("room"));
-      await waitForElement(() => wrapper.getByTestId("map"));
+      expect(wrapper.getByTestId("mapWrapper")).toBeTruthy();
+      fireEvent.click(wrapper.getByText("room"));
+      expect(wrapper.queryByTestId("mapWrapper")).not.toBeTruthy();
     }, 500);
   });
 });

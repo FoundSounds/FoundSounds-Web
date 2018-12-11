@@ -106,10 +106,8 @@ class SoundContainer extends React.Component<Props, State> {
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}
               >
-                <div>
-                  <div>
-                    {map}
-                  </div>
+                <div data-testid="map">
+                  {map}
                 </div>
               </ReactCSSTransitionGroup>
             </Card>

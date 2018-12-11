@@ -1,8 +1,6 @@
 // @flow
 import React from "react";
-import { render, waitForElement } from "react-testing-library";
-import { shallow } from "enzyme";
-import Button from "@material/react-button";
+import { render, fireEvent, waitForElement } from "react-testing-library";
 import SoundContainer from "../SoundContainer";
 import queryMock from "../../../__testUtils__/queryMock";
 
@@ -75,11 +73,12 @@ describe("Map", () => {
         },
         data: mockAppQueryData,
       });
-      const wrapper = await render(<SoundContainer id="10" />);
+      const wrapper = render(<SoundContainer id="10" />);
+      await waitForElement(() => wrapper.getByText("Really great sound!"));
       console.error("HI DAVID");
-      console.error(wrapper);
-      //expect(wrapper.find(Button)).to.have.lengthOf(1);
-      // await waitForElement(() => getByText.find(Button));
+      expect(wrapper.getByText("Really great sound!")).toBeTruthy();
+      fireEvent.click(wrapper.getByText("room"));
+      await waitForElement(() => wrapper.getByTestId("map"));
     }, 500);
   });
 });

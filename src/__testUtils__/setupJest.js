@@ -8,7 +8,7 @@ global.fetch = fetch;
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
-global.console = { error: jest.fn() };
+// global.console = { error: jest.fn() };
 
 jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
   Map: () => ({

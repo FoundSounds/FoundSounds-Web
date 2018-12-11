@@ -86,7 +86,11 @@ class SoundContainer extends React.Component<Props, State> {
           };
 
           const toggleGeoData = () => {
-            this.setState({ geoData: soundGeoData, map: soundMap });
+            if (map === null) {
+              this.setState({ geoData: soundGeoData, map: soundMap });
+            } else {
+              this.setState({ map: null });
+            }
           };
 
           return (
@@ -96,15 +100,13 @@ class SoundContainer extends React.Component<Props, State> {
               <div className="mdc-typography--subtitle2">
                 {props.sound.description}
               </div>
-              <Button icon={geoButton} onClick={toggleGeoData} />
+              <Button className="geoButton" icon={geoButton} onClick={toggleGeoData} />
               <ReactCSSTransitionGroup
                 transitionName="fade"
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}
               >
                 <div>
-                  {geoData.latitude}
-                  {geoData.longitude}
                   <div>
                     {map}
                   </div>

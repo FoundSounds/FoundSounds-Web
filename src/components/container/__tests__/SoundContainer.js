@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
 import { render, waitForElement } from "react-testing-library";
+import { shallow } from "enzyme";
+import Button from "@material/react-button";
 import SoundContainer from "../SoundContainer";
 import queryMock from "../../../__testUtils__/queryMock";
 
@@ -63,6 +65,21 @@ describe("Map", () => {
       expect(getByText("Error!")).toBeTruthy();
       jest.spyOn(global.console, "error");
       expect(console.error).toBeCalled();
+    }, 500);
+
+    it("should show map when button clicked", async () => {
+      queryMock.mockQuery({
+        name: "SoundContainerQuery",
+        variables: {
+          id: "10",
+        },
+        data: mockAppQueryData,
+      });
+      const wrapper = await render(<SoundContainer id="10" />);
+      console.error("HI DAVID");
+      console.error(wrapper);
+      //expect(wrapper.find(Button)).to.have.lengthOf(1);
+      // await waitForElement(() => getByText.find(Button));
     }, 500);
   });
 });

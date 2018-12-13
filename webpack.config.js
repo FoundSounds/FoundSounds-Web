@@ -61,10 +61,18 @@ module.exports = {
   ],
   devServer: {
     disableHostCheck: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
     proxy: {
       "/graphql": {
         target: "http://localhost:3000",
         secure: false,
+      },
+      "/uploads/**": {
+        target: "https://s3.amazonaws.com/foundsounds/uploads/",
+        changeOrigin: true,
+        secure: true,
       },
     },
   },

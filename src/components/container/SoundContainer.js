@@ -5,8 +5,10 @@ import { graphql, QueryRenderer } from "react-relay";
 import Card, {
   CardMedia,
 } from "@material/react-card";
+import ReactDOM from "react-dom";
 import MaterialIcon from "@material/react-material-icon";
 import Button from "@material/react-button";
+import * as loadImage from "blueimp-load-image";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import environment from "../../environment";
 import Map from "../presentational/Map";
@@ -23,6 +25,7 @@ type GeoData = {
 type State = {
   geoData: GeoData,
   map: ?Node,
+  coverImage: ?Node,
 };
 
 class SoundContainer extends React.Component<Props, State> {
@@ -35,6 +38,7 @@ class SoundContainer extends React.Component<Props, State> {
         description: null,
       },
       map: null,
+      coverImage: null,
     };
   }
 
@@ -68,7 +72,8 @@ class SoundContainer extends React.Component<Props, State> {
           if (!props) {
             return <div>Loading...</div>;
           }
-          const imgPrefix = "https://foundsounds.me/uploads/images/";
+          //const imgPrefix = "https://foundsounds.me/uploads/images/";
+          const imgPrefix = "/uploads/images/";
           const img = props.sound.photos ? `${imgPrefix}${props.sound.photos[0].file_name}` : "";
           const geoButton = (
             <MaterialIcon icon="room" hasRipple />
@@ -93,9 +98,28 @@ class SoundContainer extends React.Component<Props, State> {
             }
           };
 
+          let coverImage = null;
+          const loadCover = () => {
+            loadImage(
+              img,
+              function (image) {
+                debugger;
+                coverImage.appendChild(image);
+              },
+              {
+                orientation: true,
+                maxWidth: 400,
+              }
+            );
+          };
+
+          loadCover();
+
           return (
             <Card className="sound-card">
-              <CardMedia square imageUrl={img} />
+              <CardMedia square>
+                <div style={{width: "100%"}} ref={node => coverImage =  node } />
+              </CardMedia>
               <h2>{props.sound.user.name}</h2>
               <div className="mdc-typography--subtitle2">
                 {props.sound.description}
